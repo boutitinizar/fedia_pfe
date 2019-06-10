@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fedia_pfe_adherents,fedia_pfe.adherents,model_fedia_pfe_adherents,,1,1,1,1
+access_fedia_pfe_produits,fedia_pfe.produits,model_fedia_pfe_produits,,1,1,1,1
+access_fedia_pfe_form_juridique,fedia_pfe.form_juridique,model_fedia_pfe_form_juridique,,1,1,1,1
+access_fedia_pfe_activite,fedia_pfe.activite,model_fedia_pfe_activite,,1,1,1,1
+access_fedia_pfe_zone_geo,fedia_pfe.zone_geo,model_fedia_pfe_zone_geo,,1,1,1,1

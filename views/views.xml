@@ -1,0 +1,164 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="fedia_pfe.list">
+        <field name="name">fedia_pfe list</field>
+        <field name="model">fedia_pfe.adherents</field>
+        <field name="arch" type="xml">
+            <tree>
+              <field name="id_intern"/>
+              <field name="name" />
+              <field name="achats" sum="Total Achats"/>
+              <field name="produit"/>
+              <field name="form_juridique"/>
+              <field name="activite"/>
+              <field name="zone_geo"/>
+              <field name="cm"/>
+              <field name="rm"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="fedia_pfe.form">
+    <field name="name">fedia_pfe form </field>
+    <field name="model">fedia_pfe.adherents</field>
+    <field name="arch" type="xml">
+    <form string="Adhérent">
+       <sheet>
+
+           <group>
+               <group>
+                    <div class="oe_title">
+                         <div name="options">
+                        <div>
+                            <label for="id_intern"/>
+                            <field name="id_intern"/>
+                        </div>
+                    </div>
+                    <label class="oe_edit_only" for="name" string="Nom Adhérent"/>
+                    <h1><field name="name" placeholder="Nom Adhérent"/></h1>
+                </div>
+               </group>
+
+           </group>
+          <group>
+                    <field name="cm"/>
+                    <field name="rm"/>
+                    <field name="achats"/>
+               </group>
+
+           <notebook>
+                <page string="Informations Générales" name="general_information">
+                    <group>
+                        <group>
+                            <field name="produit"/>
+                            <field name="form_juridique"/>
+                        </group>
+                        <group>
+                            <field name="activite"/>
+                            <field name="zone_geo"/>
+                        </group>
+                    </group>
+                </page>
+           </notebook>
+        <group string="Notes internes" name="note"  nolabel="1" >
+                 <field name="note" nolabel="1" placeholder="Cette note est pour usage interne seulement."/>
+        </group>
+       </sheet>
+
+    </form>
+    </field>
+    </record>
+
+    <record id="view_stock_level_forecast_graph" model="ir.ui.view">
+        <field name="name">fedia_pfe.graph</field>
+        <field name="model">fedia_pfe.adherents</field>
+        <field name="arch" type="xml">
+            <graph string="Stock Level forecast" type="line">
+                <field name="name" type="col"/>
+                <field name="achats"  type="measure"/>
+            </graph>
+        </field>
+
+    </record>
+    <record id="fedia_pfe_report_pivot" model="ir.ui.view">
+
+         <field name="name">fedia_pfe.pivot</field>
+
+         <field name="model">fedia_pfe.adherents</field>
+
+         <field name="arch" type="xml">
+
+             <pivot string="Sales History Analysis">
+
+                <field name="name" type="col"/>
+                <field name="achats"  type="measure"/>
+
+             </pivot>
+
+         </field>
+
+</record>
+    <record model="ir.actions.act_window" id="fedia_pfe.adherents">
+      <field name="name">Liste Adhérents</field>
+      <field name="res_model">fedia_pfe.adherents</field>
+      <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fedia_pfe.produits">
+      <field name="name">Liste Produits</field>
+      <field name="res_model">fedia_pfe.produits</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fedia_pfe.form_juridique">
+      <field name="name">Forme Juridique</field>
+      <field name="res_model">fedia_pfe.form_juridique</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fedia_pfe.activite">
+      <field name="name">Activité</field>
+      <field name="res_model">fedia_pfe.activite</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="fedia_pfe.zone_geo">
+      <field name="name">Zone Géographique</field>
+      <field name="res_model">fedia_pfe.zone_geo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="activite_form_view" model="ir.ui.view">
+            <field name="name">activite.form</field>
+            <field name="model">fedia_pfe.activite</field>
+            <field name="arch" type="xml">
+                <form class="oe_form_configuration">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Produit" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="e.x. Service"/></h1>
+                        </div>
+                        <group name="first" col="2">
+                            <field name="parent_id" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="risque"/>
+                            <field name="cotation"/>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    <menuitem name="Evaluation Risque" id="fedia_pfe.menu_root"/>
+    <menuitem name="Adhérents" id="fedia_pfe.menu_1" parent="fedia_pfe.menu_root" action="fedia_pfe.adherents"/>
+    <menuitem name="Produits" id="fedia_pfe.menu_2" parent="fedia_pfe.menu_root" action="fedia_pfe.produits"/>
+    <menuitem name="Form Juridique" id="fedia_pfe.menu_3" parent="fedia_pfe.menu_root" action="fedia_pfe.form_juridique"/>
+    <menuitem name="Activité" id="fedia_pfe.menu_4" parent="fedia_pfe.menu_root" action="fedia_pfe.activite"/>
+    <menuitem name="Zone Géographique" id="fedia_pfe.menu_5" parent="fedia_pfe.menu_root" action="fedia_pfe.zone_geo"/>
+
+
+  </data>
+</odoo>
